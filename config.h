@@ -99,11 +99,11 @@ static Key keys[] = {
     { Mod4Mask,            XK_period,  spawn,             SHCMD("pamixer --allow-boost -i 5") },
     { Mod4Mask,            XK_slash,   spawn,             SHCMD("pamixer -t") },
     { Mod4Mask,            XK_x,       spawn,             SHCMD("mocp -G") },
-    { MODKEY,              XK_e,       spawn,             SHCMD("st -e zsh ~/Scripts/emojis") },
-    { MODKEY,              XK_v,       spawn,             SHCMD("st -e zsh ~/Scripts/yt_mpv") },
-    { MODKEY,              XK_t,       spawn,             SHCMD("scrot '%d-%b-%Y-%H:%M.png' -e 'mv $f ~/Notes/trades/' && dunstify 'chart screenshot  >>  trades'") },
-    { MODKEY,              XK_s,       spawn,             SHCMD("scrot '%d-%b-%Y-%H:%M.png' -e 'mv $f ~/Notes/ict/reviews/' && dunstify 'chart screenshot  >>  reviews'") },
-    { MODKEY,              XK_f,       spawn,             SHCMD("scrot '%d-%b-%Y-%H:%M.png' -e 'mv $f ~/Notes/ict/forums/' && dunstify 'chart screenshot  >>  forums'") },
+    { MODKEY,              XK_e,       spawn,             SHCMD("st -e zsh $HOME/Scripts/emojis") },
+    { MODKEY,              XK_v,       spawn,             SHCMD("st -e zsh $HOME/Scripts/yt_mpv") },
+    { MODKEY,              XK_t,       spawn,             SHCMD("scrot '%d-%b-%Y-%H:%M.png' -e 'mv $f $HOME/Notes/trades/' && dunstify 'chart screenshot  >>  trades'") },
+    { MODKEY,              XK_s,       spawn,             SHCMD("scrot '%d-%b-%Y-%H:%M.png' -e 'mv $f $HOME/Notes/ict/reviews/' && dunstify 'chart screenshot  >>  reviews'") },
+    { MODKEY,              XK_f,       spawn,             SHCMD("scrot '%d-%b-%Y-%H:%M.png' -e 'mv $f $HOME/Notes/ict/forums/' && dunstify 'chart screenshot  >>  forums'") },
 
 	TAGKEYS(               XK_1,                           0)
 	TAGKEYS(               XK_2,                           1)
