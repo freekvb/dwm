@@ -94,6 +94,7 @@ static Key keys[] = {
 
     { Mod4Mask,            XK_q,       spawn,             SHCMD("qutebrowser") },
     { Mod4Mask,            XK_c,       spawn,             SHCMD("chromium") },
+    { Mod4Mask,            XK_m,       spawn,             SHCMD("mt4") },
     { Mod4Mask,            XK_y,       spawn,             SHCMD("clipmenu -i") },
     { Mod4Mask,            XK_comma,   spawn,             SHCMD("pamixer --allow-boost -d 5") },
     { Mod4Mask,            XK_period,  spawn,             SHCMD("pamixer --allow-boost -i 5") },
