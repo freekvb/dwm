@@ -9,13 +9,14 @@ static const char *fonts[]          = { "Terminus:pixelsize=14:antialias=true:au
 static const char dmenufont[]       = "Terminus:pixelsize=14";
 static const char col_gray1[]       = "#1c1b1b";
 /* static const char col_gray2[]       = "#827E83";  */
-static const char col_gray2[]       = "#CDB392";
+ static const char col_gray2[]       = "#CDB392";
 static const char col_gray3[]       = "#ebe5d9";
 static const char col_gray4[]       = "#1c1b1b";
+static const char col_gray5[]       = "#728B99";
 static const char col_cyan[]        = "#E4CEAB";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
+	[SchemeNorm] = { col_gray3, col_gray1, col_gray5 },
 	[SchemeSel]  = { col_gray4, col_gray2,  col_cyan  },
 };
 
