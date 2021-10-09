@@ -7,18 +7,20 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "Terminus:pixelsize=14:antialias=true:autohint=true" };
 static const char dmenufont[]       = "Terminus:pixelsize=14";
+/* #include "/home/fvb/.cache/wal/colors-wal-dwm.h" */
 static const char col_gray1[]       = "#1c1b1b";
-/* static const char col_gray2[]       = "#827E83";  */
- static const char col_gray2[]       = "#CDB392";
+static const char col_gray2[]       = "#CDB392";
 static const char col_gray3[]       = "#ebe5d9";
 static const char col_gray4[]       = "#1c1b1b";
 static const char col_gray5[]       = "#728B99";
 static const char col_cyan[]        = "#E4CEAB";
 static const char *colors[][3]      = {
-	/*               fg         bg         border   */
+
+    /*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray5 },
 	[SchemeSel]  = { col_gray4, col_gray2,  col_cyan  },
 };
+
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -79,7 +81,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,    XK_l,       setmfact,          {.f = +0.05} },
 	{ MODKEY|ShiftMask,    XK_Return,  zoom,              {0} },
 	{ MODKEY,              XK_Tab,     view,              {0} },
-	{ MODKEY|ShiftMask,    XK_c,       killclient,        {0} },
+	{ Mod4Mask,            XK_w,       killclient,        {0} },
 	{ MODKEY|ControlMask,  XK_t,       setlayout,         {.v = &layouts[0]} },
 	{ MODKEY|ControlMask,  XK_f,       setlayout,         {.v = &layouts[1]} },
 	{ MODKEY|ControlMask,  XK_m,       setlayout,         {.v = &layouts[2]} },
@@ -104,9 +106,9 @@ static Key keys[] = {
     { Mod4Mask,            XK_x,       spawn,             SHCMD("mocp -G") },
     { MODKEY,              XK_e,       spawn,             SHCMD("st -e zsh $HOME/Scripts/emojis") },
     { MODKEY,              XK_v,       spawn,             SHCMD("st -e zsh $HOME/Scripts/yt_mpv") },
-    { MODKEY,              XK_t,       spawn,             SHCMD("scrot '%d-%b-%Y-%H:%M.png' -e 'mv $f $HOME/Notes/trades/' && dunstify 'chart screenshot  >>  trades'") },
-    { MODKEY,              XK_s,       spawn,             SHCMD("scrot '%d-%b-%Y-%H:%M.png' -e 'mv $f $HOME/Notes/ict/reviews/' && dunstify 'chart screenshot  >>  reviews'") },
-    { MODKEY,              XK_f,       spawn,             SHCMD("scrot '%d-%b-%Y-%H:%M.png' -e 'mv $f $HOME/Notes/ict/forums/' && dunstify 'chart screenshot  >>  forums'") },
+    { MODKEY,              XK_t,       spawn,             SHCMD("scrot '%d-%b-%Y-%H:%M.png' -e 'mv $f ~/Notes/trades/' && dunstify 'chart screenshot  >>  trades'") },
+    { MODKEY,              XK_s,       spawn,             SHCMD("scrot '%d-%b-%Y-%H:%M.png' -e 'mv $f ~/Notes/ict/reviews/' && dunstify 'chart screenshot  >>  reviews'") },
+    { MODKEY,              XK_f,       spawn,             SHCMD("scrot '%d-%b-%Y-%H:%M.png' -e 'mv $f ~/Notes/ict/forums/' && dunstify 'chart screenshot  >>  forums'") },
 
 	TAGKEYS(               XK_1,                           0)
 	TAGKEYS(               XK_2,                           1)
