@@ -7,7 +7,12 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "Terminus:pixelsize=14:antialias=true:autohint=true" };
 static const char dmenufont[]       = "Terminus:pixelsize=14";
-/* #include "/home/fvb/.cache/wal/colors-wal-dwm.h" */
+
+#define wal "/home/fvb/.cache/wal/colors-wal-dwm.h"
+
+#if __has_include(wal)
+#include wal
+#else
 static const char col_gray1[]       = "#1c1b1b";
 static const char col_gray2[]       = "#CDB392";
 static const char col_gray3[]       = "#ebe5d9";
@@ -20,6 +25,7 @@ static const char *colors[][3]      = {
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray5 },
 	[SchemeSel]  = { col_gray4, col_gray2,  col_cyan  },
 };
+#endif
 
 
 /* tagging */
