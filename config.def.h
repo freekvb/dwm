@@ -114,6 +114,7 @@ static Key keys[] = {
     { Mod4Mask,             XK_z,       spawn,             SHCMD("slock") },
     { Mod4Mask|ControlMask, XK_b,       spawn,             SHCMD("dunstify $(curl -s cli.fyi/BTC | awk 'NR==4 {print\"btc: \"$3+0}')") },
     { Mod4Mask|ControlMask, XK_x,       spawn,             SHCMD("dunstify $(curl -s cli.fyi/XMR | awk 'NR==4 {print\"xmr: \"$3+0}')") },
+    { Mod4Mask|ControlMask, XK_u,       spawn,             SHCMD("dunstify $(date +%s)") },
     { MODKEY,               XK_e,       spawn,             SHCMD("st -e zsh $HOME/Scripts/dmenu-emoji") },
     { MODKEY,               XK_v,       spawn,             SHCMD("st -e zsh $HOME/Scripts/yt_mpv") },
     { MODKEY,               XK_t,       spawn,             SHCMD("scrot '%d-%b-%Y-%H:%M.png' -e 'mv $f ~/Notes/trades/' && dunstify 'chart screenshot  >>  trades'") },
