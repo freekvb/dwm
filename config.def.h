@@ -118,7 +118,7 @@ static Key keys[] = {
     { Mod4Mask|ControlMask, XK_u,       spawn,             SHCMD("dunstify $(date +%s)") },
     { MODKEY,               XK_e,       spawn,             SHCMD("st -e zsh $HOME/Scripts/dmenu-emoji") },
     { MODKEY,               XK_v,       spawn,             SHCMD("st -e zsh $HOME/Scripts/yt_mpv") },
-    { MODKEY,               XK_t,       spawn,             SHCMD("scrot '%d-%b-%Y-%H:%M.png' -e 'mv $f ~/Notes/trades/' && dunstify 'chart screenshot  >>  trades'") },
+    { MODKEY,               XK_t,       spawn,             SHCMD("scrot '%d-%b-%Y-%H:%M.png' -e 'mv $f ~/Notes/trades/tp/' && dunstify 'chart screenshot  >>  trades/tp'") },
     { MODKEY,               XK_s,       spawn,             SHCMD("scrot '%d-%b-%Y-%H:%M.png' -e 'mv $f ~/Notes/ict/reviews/' && dunstify 'chart screenshot  >>  reviews'") },
     { MODKEY,               XK_f,       spawn,             SHCMD("scrot '%d-%b-%Y-%H:%M.png' -e 'mv $f ~/Notes/ict/forums/' && dunstify 'chart screenshot  >>  forums'") },
 
