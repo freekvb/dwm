@@ -2,7 +2,6 @@
 
 /* appearance */
 static const unsigned int borderpx  = 0;        /* border pixel of windows */
-static const unsigned int gappx     = 0;        /* gap pixel between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -74,7 +73,7 @@ static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
 
 static Key keys[] = {
-	/* modifier             key         function           argument */
+	/* modifier                     key        function        argument */
 
 	{ MODKEY,               XK_space,   spawn,             {.v = dmenucmd } },
 	{ MODKEY,               XK_Return,  spawn,             {.v = termcmd } },
@@ -116,39 +115,39 @@ static Key keys[] = {
     { Mod4Mask|ControlMask, XK_b,       spawn,             SHCMD("dunstify $(curl -s cli.fyi/BTC | awk 'NR==4 {print\"btc: \"$3+0}')") },
     { Mod4Mask|ControlMask, XK_x,       spawn,             SHCMD("dunstify $(curl -s cli.fyi/XMR | awk 'NR==4 {print\"xmr: \"$3+0}')") },
     { Mod4Mask|ControlMask, XK_u,       spawn,             SHCMD("dunstify $(date +%s)") },
-    { MODKEY,               XK_e,       spawn,             SHCMD("st -e zsh $HOME/Scripts/dmenu-emoji") },
+    { Mod4Mask,             XK_e,       spawn,             SHCMD("st -e zsh $HOME/Scripts/dmenu-emoji") },
     { MODKEY,               XK_v,       spawn,             SHCMD("st -e zsh $HOME/Scripts/yt_mpv") },
     { MODKEY,               XK_f,       spawn,             SHCMD("scrot '%d-%b-%Y-%H:%M.png' -e 'mv $f ~/Notes/ict/forums/' && dunstify 'chart screenshot  >>  forums'") },
     { MODKEY,               XK_s,       spawn,             SHCMD("scrot '%d-%b-%Y-%H:%M.png' -e 'mv $f ~/Notes/ict/reviews/' && dunstify 'chart screenshot  >>  reviews'") },
     { MODKEY,               XK_y,       spawn,             SHCMD("scrot '%d-%b-%Y-%H:%M.png' -e 'mv $f ~/Notes/ict/yt_reviews/' && dunstify 'chart screenshot  >>  yt_reviews'") },
     { MODKEY,               XK_t,       spawn,             SHCMD("scrot '%d-%b-%Y-%H:%M.png' -e 'mv $f ~/Notes/trades/tp/' && dunstify 'chart screenshot  >>  trades/tp'") },
 
-	TAGKEYS(                XK_1,                           0)
-	TAGKEYS(                XK_2,                           1)
-	TAGKEYS(                XK_3,                           2)
-	TAGKEYS(                XK_4,                           3)
-	TAGKEYS(                XK_5,                           4)
-	TAGKEYS(                XK_6,                           5)
-	TAGKEYS(                XK_7,                           6)
-	TAGKEYS(                XK_8,                           7)
-	TAGKEYS(                XK_9,                           8)
-	{ MODKEY|ShiftMask,     XK_q,       quit,              {0} },
+	TAGKEYS(                        XK_1,                      0)
+	TAGKEYS(                        XK_2,                      1)
+	TAGKEYS(                        XK_3,                      2)
+	TAGKEYS(                        XK_4,                      3)
+	TAGKEYS(                        XK_5,                      4)
+	TAGKEYS(                        XK_6,                      5)
+	TAGKEYS(                        XK_7,                      6)
+	TAGKEYS(                        XK_8,                      7)
+	TAGKEYS(                        XK_9,                      8)
+	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 };
 
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static Button buttons[] = {
-	/* click                event mask  button      function         argument */
-	{ ClkLtSymbol,          0,          Button1,    setlayout,       {0} },
-	{ ClkLtSymbol,          0,          Button3,    setlayout,       {.v = &layouts[2]} },
-	{ ClkWinTitle,          0,          Button2,    zoom,            {0} },
-	{ ClkStatusText,        0,          Button2,    spawn,           {.v = termcmd } },
-	{ ClkClientWin,         MODKEY,     Button1,    movemouse,       {0} },
-	{ ClkClientWin,         MODKEY,     Button2,    togglefloating,  {0} },
-	{ ClkClientWin,         MODKEY,     Button3,    resizemouse,     {0} },
-	{ ClkTagBar,            0,          Button1,    view,            {0} },
-	{ ClkTagBar,            0,          Button3,    toggleview,      {0} },
-	{ ClkTagBar,            MODKEY,     Button1,    tag,             {0} },
-	{ ClkTagBar,            MODKEY,     Button3,    toggletag,       {0} },
+	/* click                event mask      button          function        argument */
+	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
+	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
+	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
+	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
+	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
+	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
+	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
+	{ ClkTagBar,            0,              Button1,        view,           {0} },
+	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
+	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
+	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
 

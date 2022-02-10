@@ -444,7 +444,7 @@ buttonpress(XEvent *e)
 			if (!(occ & 1 << i || m->tagset[m->seltags] & 1 << i))
 				continue;
 			x += TEXTW(tags[i]);
-        } while (ev->x >= x && ++i < LENGTH(tags));
+		} while (ev->x >= x && ++i < LENGTH(tags));
 		if (i < LENGTH(tags)) {
 			click = ClkTagBar;
 			arg.ui = 1 << i;
@@ -712,6 +712,9 @@ drawbar(Monitor *m)
 	unsigned int i, occ = 0, urg = 0;
 	Client *c;
 
+	if (!m->showbar)
+		return;
+
 	/* draw status first so it can be overdrawn by tags later */
 	if (m == selmon) { /* status is only drawn on selected monitor */
 		drw_setscheme(drw, scheme[SchemeNorm]);
@@ -720,7 +723,7 @@ drawbar(Monitor *m)
 	}
 
 	for (c = m->clients; c; c = c->next) {
-        occ |= c->tags == 255 ? 0 : c->tags;
+		occ |= c->tags == 255 ? 0 : c->tags;
 		if (c->isurgent)
 			urg |= c->tags;
 	}
@@ -762,24 +765,24 @@ drawbars(void)
 		drawbar(m);
 }
 
-/*void
- *enternotify(XEvent *e)
- *{
- *	Client *c;
- *	Monitor *m;
- *	XCrossingEvent *ev = &e->xcrossing;
+/* void
+ * enternotify(XEvent *e)
+ * {
+ * 	Client *c;
+ * 	Monitor *m;
+ * 	XCrossingEvent *ev = &e->xcrossing;
  *
- *	if ((ev->mode != NotifyNormal || ev->detail == NotifyInferior) && ev->window != root)
- *		return;
- *	c = wintoclient(ev->window);
- *	m = c ? c->mon : wintomon(ev->window);
- *	if (m != selmon) {
- *		unfocus(selmon->sel, 1);
- *		selmon = m;
- *	} else if (!c || c == selmon->sel)
- *		return;
- *	focus(c);
- *}
+ * 	if ((ev->mode != NotifyNormal || ev->detail == NotifyInferior) && ev->window != root)
+ * 		return;
+ * 	c = wintoclient(ev->window);
+ * 	m = c ? c->mon : wintomon(ev->window);
+ * 	if (m != selmon) {
+ * 		unfocus(selmon->sel, 1);
+ * 		selmon = m;
+ * 	} else if (!c || c == selmon->sel)
+ * 		return;
+ * 	focus(c);
+ * }
  */
 
 void
@@ -839,7 +842,7 @@ focusmon(const Arg *arg)
 	unfocus(selmon->sel, 0);
 	selmon = m;
 	focus(NULL);
-   	warp(selmon->sel);
+	warp(selmon->sel);
 }
 
 void
@@ -1062,13 +1065,13 @@ manage(Window w, XWindowAttributes *wa)
 		&& (c->x + (c->w / 2) < c->mon->wx + c->mon->ww)) ? bh : c->mon->my);
 	c->bw = borderpx;
 
-    selmon->tagset[selmon->seltags] &= ~scratchtag;
-    if (!strcmp(c->name, scratchpadname)) {
-    	c->mon->tagset[c->mon->seltags] |= c->tags = scratchtag;
-    	c->isfloating = True;
-    	c->x = c->mon->wx + (c->mon->ww / 2 - WIDTH(c) / 2);
-    	c->y = c->mon->wy + (c->mon->wh / 2 - HEIGHT(c) / 2);
-    }
+	selmon->tagset[selmon->seltags] &= ~scratchtag;
+	if (!strcmp(c->name, scratchpadname)) {
+		c->mon->tagset[c->mon->seltags] |= c->tags = scratchtag;
+		c->isfloating = True;
+		c->x = c->mon->wx + (c->mon->ww / 2 - WIDTH(c) / 2);
+		c->y = c->mon->wy + (c->mon->wh / 2 - HEIGHT(c) / 2);
+	}
 
 	wc.border_width = c->bw;
 	XConfigureWindow(dpy, w, CWBorderWidth, &wc);
@@ -1388,8 +1391,8 @@ restack(Monitor *m)
 	}
 	XSync(dpy, False);
 	while (XCheckMaskEvent(dpy, EnterWindowMask, &ev));
-    if (m == selmon && (m->tagset[m->seltags] & m->sel->tags) && selmon->lt[selmon->sellt] != &layouts[2])
-       	warp(m->sel);
+	if (m == selmon && (m->tagset[m->seltags] & m->sel->tags) && selmon->lt[selmon->sellt] != &layouts[2])
+		warp(m->sel);
 }
 
 void
@@ -1704,7 +1707,7 @@ spawn(const Arg *arg)
 {
 	if (arg->v == dmenucmd)
 		dmenumon[0] = '0' + selmon->num;
-    selmon->tagset[selmon->seltags] &= ~scratchtag;
+	selmon->tagset[selmon->seltags] &= ~scratchtag;
 	if (fork() == 0) {
 		if (dpy)
 			close(ConnectionNumber(dpy));
@@ -1737,29 +1740,28 @@ tagmon(const Arg *arg)
 void
 tile(Monitor *m)
 {
-    unsigned int i, n, h, mw, my, ty, ns;
+	unsigned int i, n, h, mw, my, ty;
 	Client *c;
 
 	for (n = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), n++);
 	if (n == 0)
 		return;
 
-    if (n > m->nmaster) {
-        mw = m->nmaster ? m->ww * m->mfact : 0;
-        ns = m->nmaster > 0 ? 2 : 1;
-    } else {
+	if (n > m->nmaster)
+		mw = m->nmaster ? m->ww * m->mfact : 0;
+	else
 		mw = m->ww;
-        ns = 1;
-    }
-    for(i = 0, my = ty = gappx, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
+	for (i = my = ty = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
 		if (i < m->nmaster) {
-            h = (m->wh - my) / (MIN(n, m->nmaster) - i) - gappx;
-            resize(c, m->wx + gappx, m->wy + my, mw - (2*c->bw) - gappx*(5-ns)/2, h - (2*c->bw), False);
-            my += HEIGHT(c) + gappx;
+			h = (m->wh - my) / (MIN(n, m->nmaster) - i);
+			resize(c, m->wx, m->wy + my, mw - (2*c->bw), h - (2*c->bw), 0);
+			if (my + HEIGHT(c) < m->wh)
+				my += HEIGHT(c);
 		} else {
-            h = (m->wh - ty) / (n - i) - gappx;
-            resize(c, m->wx + mw + gappx/ns, m->wy + ty, m->ww - mw - (2*c->bw) - gappx*(5-ns)/2, h - (2*c->bw), False);
-            ty += HEIGHT(c) + gappx;
+			h = (m->wh - ty) / (n - i);
+			resize(c, m->wx + mw, m->wy + ty, m->ww - mw - (2*c->bw), h - (2*c->bw), 0);
+			if (ty + HEIGHT(c) < m->wh)
+				ty += HEIGHT(c);
 		}
 }
 
