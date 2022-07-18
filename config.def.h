@@ -45,7 +45,7 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.59; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
@@ -125,21 +125,21 @@ static Key keys[] = {
     { Mod4Mask,             XK_e,       spawn,             SHCMD("st -e zsh $HOME/Scripts/dmenu-emoji") },
     { MODKEY,               XK_p,       spawn,             SHCMD("pmenu") },
     { MODKEY,               XK_v,       spawn,             SHCMD("st -e zsh $HOME/Scripts/yt_mpv") },
-    { MODKEY,               XK_f,       spawn,             SHCMD("scrot '%d-%b-%Y-%H:%M.png' -e 'mv $f ~/Notes/ict/forums/' && dunstify 'chart screenshot  >>  forums'") },
-    { MODKEY,               XK_s,       spawn,             SHCMD("scrot '%d-%b-%Y-%H:%M.png' -e 'mv $f ~/Notes/ict/reviews/' && dunstify 'chart screenshot  >>  reviews'") },
-    { MODKEY,               XK_y,       spawn,             SHCMD("scrot '%d-%b-%Y-%H:%M.png' -e 'mv $f ~/Notes/ict/yt_reviews/' && dunstify 'chart screenshot  >>  yt_reviews'") },
-    { MODKEY,               XK_x,       spawn,             SHCMD("scrot '%d-%b-%Y-%H:%M.png' -e 'mv $f ~/Notes/trades/tp/' && dunstify 'chart screenshot  >>  trades/tp'") },
+    { MODKEY,               XK_f,       spawn,             SHCMD("scrot '%d-%b-%Y-%H:%M:%S.png' -e 'mv $f ~/Notes/ict/forums/' && dunstify 'chart screenshot  >>  forums'") },
+    { MODKEY,               XK_s,       spawn,             SHCMD("scrot '%d-%b-%Y-%H:%M:%S.png' -e 'mv $f ~/Notes/ict/reviews/' && dunstify 'chart screenshot  >>  reviews'") },
+    { MODKEY,               XK_y,       spawn,             SHCMD("scrot '%d-%b-%Y-%H:%M:%S.png' -e 'mv $f ~/Notes/ict/yt_reviews/' && dunstify 'chart screenshot  >>  yt_reviews'") },
+    { MODKEY,               XK_x,       spawn,             SHCMD("scrot '%d-%b-%Y-%H:%M:%S.png' -e 'mv $f ~/Notes/trades/tp/' && dunstify 'chart screenshot  >>  trades/tp'") },
 
-	TAGKEYS(                        XK_1,                      0)
-	TAGKEYS(                        XK_2,                      1)
-	TAGKEYS(                        XK_3,                      2)
-	TAGKEYS(                        XK_4,                      3)
-	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
-	TAGKEYS(                        XK_7,                      6)
-	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	TAGKEYS(                XK_1,                          0)
+	TAGKEYS(                XK_2,                          1)
+	TAGKEYS(                XK_3,                          2)
+	TAGKEYS(                XK_4,                          3)
+	TAGKEYS(                XK_5,                          4)
+	TAGKEYS(                XK_6,                          5)
+	TAGKEYS(                XK_7,                          6)
+	TAGKEYS(                XK_8,                          7)
+	TAGKEYS(                XK_9,                          8)
+	{ MODKEY|ShiftMask,     XK_q,       quit,              {0} },
 };
 
 /* button definitions */
