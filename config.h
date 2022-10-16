@@ -28,7 +28,6 @@ static const char *colors[][3]      = {
 };
 #endif
 
-
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
@@ -53,8 +52,6 @@ static const Layout layouts[] = {
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
-	{ "|M|",      centeredmaster },
-	{ ">M>",      centeredfloatingmaster },
 };
 
 /* key definitions */
@@ -75,75 +72,78 @@ static const char *termcmd[]  = { "st", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
 
-static Key keys[] = {
-	/* modifier                     key        function        argument */
+static const Key keys[] = {
 
-	{ MODKEY,               XK_space,   spawn,             {.v = dmenucmd } },
-	{ MODKEY,               XK_Return,  spawn,             {.v = termcmd } },
-    { MODKEY,               XK_d,       togglescratch,     {.v = scratchpadcmd } },
-	{ MODKEY,               XK_b,       togglebar,         {0} },
-	{ MODKEY,               XK_j,       focusstack,        {.i = +1 } },
-	{ MODKEY,               XK_k,       focusstack,        {.i = -1 } },
-	{ MODKEY,               XK_i,       incnmaster,        {.i = +1 } },
-	{ MODKEY,               XK_o,       incnmaster,        {.i = -1 } },
-	{ MODKEY|ShiftMask,     XK_h,       setmfact,          {.f = -0.05} },
-	{ MODKEY|ShiftMask,     XK_l,       setmfact,          {.f = +0.05} },
-	{ MODKEY|ShiftMask,     XK_Return,  zoom,              {0} },
-	{ MODKEY,               XK_Tab,     view,              {0} },
-	{ Mod4Mask,             XK_w,       killclient,        {0} },
-	{ MODKEY|ControlMask,   XK_t,       setlayout,         {.v = &layouts[0]} },
-	{ MODKEY|ControlMask,   XK_f,       setlayout,         {.v = &layouts[1]} },
-	{ MODKEY|ControlMask,   XK_m,       setlayout,         {.v = &layouts[2]} },
-	{ MODKEY|ControlMask,   XK_u,       setlayout,         {.v = &layouts[3]} },
-	{ MODKEY|ControlMask,   XK_o,       setlayout,         {.v = &layouts[4]} },
-	{ MODKEY|ControlMask,   XK_space,   setlayout,         {0} },
-	{ MODKEY|ShiftMask,     XK_space,   togglefloating,    {0} },
-	{ MODKEY,               XK_0,       view,              {.ui = ~0 } },
-    { MODKEY,               XK_l,       shiftviewclients,  { .i = +1 } },
-    { MODKEY,               XK_h,       shiftviewclients,  { .i = -1 } },
-	{ MODKEY|ShiftMask,     XK_0,       tag,               {.ui = ~0 } },
-	{ MODKEY|ShiftMask,     XK_comma,   focusmon,          {.i = -1 } },
-	{ MODKEY|ShiftMask,     XK_period,  focusmon,          {.i = +1 } },
-	{ MODKEY|ControlMask,   XK_comma,   tagmon,            {.i = -1 } },
-	{ MODKEY|ControlMask,   XK_period,  tagmon,            {.i = +1 } },
+ /* modifier                        key             function            argument */
 
-    { Mod4Mask,             XK_q,       spawn,             SHCMD("qutebrowser") },
-    { Mod4Mask,             XK_c,       spawn,             SHCMD("chromium") },
-    { Mod4Mask,             XK_f,       spawn,             SHCMD("firefox") },
-    { Mod4Mask,             XK_m,       spawn,             SHCMD("mt4") },
-    { Mod4Mask,             XK_p,       spawn,             SHCMD("clipmenu -i") },
-    { Mod4Mask,             XK_comma,   spawn,             SHCMD("pamixer --allow-boost -d 5") },
-    { Mod4Mask,             XK_period,  spawn,             SHCMD("pamixer --allow-boost -i 5") },
-    { Mod4Mask,             XK_slash,   spawn,             SHCMD("pamixer -t") },
-    { Mod4Mask,             XK_x,       spawn,             SHCMD("mocp -M $XDG_CONFIG_HOME/moc -G") },
-    { Mod4Mask,             XK_y,       spawn,             SHCMD("pipecat-turbo.sh") },
-    { Mod4Mask,             XK_z,       spawn,             SHCMD("xset dpms force off") },
-    { Mod4Mask|ControlMask, XK_b,       spawn,             SHCMD("dunstify $(curl -s cli.fyi/BTC | awk 'NR==4 {print\"btc: \"$3+0}')") },
-    { Mod4Mask|ControlMask, XK_x,       spawn,             SHCMD("dunstify $(curl -s cli.fyi/XMR | awk 'NR==4 {print\"xmr: \"$3+0}')") },
-    { Mod4Mask|ControlMask, XK_u,       spawn,             SHCMD("dunstify $(date +%s)") },
-    { Mod4Mask,             XK_e,       spawn,             SHCMD("st -e zsh $HOME/Scripts/dmenu-emoji") },
-    { MODKEY,               XK_p,       spawn,             SHCMD("pmenu") },
-    { MODKEY,               XK_v,       spawn,             SHCMD("st -e zsh $HOME/Scripts/yt_mpv") },
-    { MODKEY,               XK_f,       spawn,             SHCMD("scrot '%d-%b-%Y-%H:%M:%S.png' -e 'mv $f ~/Notes/ict/forums/' && dunstify 'chart screenshot  >>  forums'") },
-    { MODKEY,               XK_s,       spawn,             SHCMD("scrot '%d-%b-%Y-%H:%M:%S.png' -e 'mv $f ~/Notes/ict/reviews/' && dunstify 'chart screenshot  >>  reviews'") },
-    { MODKEY,               XK_y,       spawn,             SHCMD("scrot '%d-%b-%Y-%H:%M:%S.png' -e 'mv $f ~/Notes/ict/yt_reviews/' && dunstify 'chart screenshot  >>  yt_reviews'") },
-    { MODKEY,               XK_x,       spawn,             SHCMD("scrot '%d-%b-%Y-%H:%M:%S.png' -e 'mv $f ~/Notes/trades/tp/' && dunstify 'chart screenshot  >>  trades/tp'") },
+	{ MODKEY,                       XK_space,       spawn,              {.v = dmenucmd } },
+	{ MODKEY,                       XK_Return,      spawn,              {.v = termcmd } },
+	{ MODKEY,                       XK_d,           togglescratch,      {.v = scratchpadcmd } },
+	{ MODKEY,                       XK_b,           togglebar,          {0} },
+	{ MODKEY,                       XK_j,           focusstack,         {.i = +1 } },
+	{ MODKEY,                       XK_k,           focusstack,         {.i = -1 } },
+	{ MODKEY,                       XK_i,           incnmaster,         {.i = +1 } },
+	{ MODKEY,                       XK_o,           incnmaster,         {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_h,           setmfact,           {.f = -0.05} },
+	{ MODKEY|ShiftMask,             XK_l,           setmfact,           {.f = +0.05} },
+	{ MODKEY|ShiftMask,             XK_Return,      zoom,               {0} },
+	{ MODKEY,                       XK_Tab,         view,               {0} },
+	{ MODKEY,                       XK_l,           shiftviewclients,   { .i = +1 } },
+	{ MODKEY,                       XK_h,           shiftviewclients,   { .i = -1 } },
+	{ Mod4Mask,                     XK_w,           killclient,         {0} },
+	{ MODKEY|ControlMask,           XK_t,           setlayout,          {.v = &layouts[0]} },
+	{ MODKEY|ControlMask,           XK_f,           setlayout,          {.v = &layouts[1]} },
+	{ MODKEY|ControlMask,           XK_m,           setlayout,          {.v = &layouts[2]} },
+	{ MODKEY|ControlMask,           XK_space,       setlayout,          {0} },
+	{ MODKEY|ShiftMask,             XK_space,       togglefloating,     {0} },
+	{ MODKEY,                       XK_0,           view,               {.ui = ~0 } },
+	{ MODKEY|ShiftMask,             XK_0,           tag,                {.ui = ~0 } },
+	{ MODKEY|ShiftMask,             XK_comma,       focusmon,           {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_period,      focusmon,           {.i = +1 } },
+	{ MODKEY|ControlMask,           XK_comma,       tagmon,             {.i = -1 } },
+	{ MODKEY|ControlMask,           XK_period,      tagmon,             {.i = +1 } },
 
-	TAGKEYS(                XK_1,                          0)
-	TAGKEYS(                XK_2,                          1)
-	TAGKEYS(                XK_3,                          2)
-	TAGKEYS(                XK_4,                          3)
-	TAGKEYS(                XK_5,                          4)
-	TAGKEYS(                XK_6,                          5)
-	TAGKEYS(                XK_7,                          6)
-	TAGKEYS(                XK_8,                          7)
-	TAGKEYS(                XK_9,                          8)
-	{ MODKEY|ShiftMask,     XK_q,       quit,              {0} },
+    { Mod4Mask,                     XK_q,           spawn,              SHCMD("qutebrowser") },
+    { Mod4Mask,                     XK_c,           spawn,              SHCMD("chromium") },
+    { Mod4Mask,                     XK_f,           spawn,              SHCMD("firefox") },
+    { Mod4Mask,                     XK_m,           spawn,              SHCMD("mt4") },
+    { Mod4Mask,                     XK_p,           spawn,              SHCMD("clipmenu -i") },
+    { Mod4Mask,                     XK_comma,       spawn,              SHCMD("pamixer --allow-boost -d 5") },
+    { Mod4Mask,                     XK_period,      spawn,              SHCMD("pamixer --allow-boost -i 5") },
+    { Mod4Mask,                     XK_slash,       spawn,              SHCMD("pamixer -t") },
+    { Mod4Mask,                     XK_x,           spawn,              SHCMD("mocp -M $XDG_CONFIG_HOME/moc -G") },
+    { Mod4Mask,                     XK_y,           spawn,              SHCMD("pipecat-turbo.sh") },
+    { Mod4Mask,                     XK_z,           spawn,              SHCMD("xset dpms force off") },
+    { Mod4Mask|ControlMask,         XK_b,           spawn,              SHCMD("dunstify $(curl -s cli.fyi/BTC | awk 'NR==4 {print\"btc: \"$3+0}')") },
+    { Mod4Mask|ControlMask,         XK_x,           spawn,              SHCMD("dunstify $(curl -s cli.fyi/XMR | awk 'NR==4 {print\"xmr: \"$3+0}')") },
+    { Mod4Mask|ControlMask,         XK_u,           spawn,              SHCMD("dunstify $(date +%s)") },
+    { Mod4Mask,                     XK_e,           spawn,              SHCMD("st -e zsh $HOME/Scripts/dmenu-emoji") },
+    { MODKEY,                       XK_p,           spawn,              SHCMD("pmenu") },
+    { MODKEY,                       XK_v,           spawn,              SHCMD("st -e zsh $HOME/Scripts/yt_mpv") },
+    { MODKEY,                       XK_f,           spawn,              SHCMD("scrot '%d-%b-%Y-%H:%M:%S.png' -e 'mv $f ~/Notes/ict/forums/' && dunstify 'chart screenshot  >>  forums'") },
+    { MODKEY,                       XK_s,           spawn,              SHCMD("scrot '%d-%b-%Y-%H:%M:%S.png' -e 'mv $f ~/Notes/ict/reviews/' && dunstify 'chart screenshot  >>  reviews'") },
+    { MODKEY,                       XK_y,           spawn,              SHCMD("scrot '%d-%b-%Y-%H:%M:%S.png' -e 'mv $f ~/Notes/ict/yt_reviews/' && dunstify 'chart screenshot  >>  yt_reviews'") },
+    { MODKEY,                       XK_x,           spawn,              SHCMD("scrot '%d-%b-%Y-%H:%M:%S.png' -e 'mv $f ~/Notes/trades/tp/' && dunstify 'chart screenshot  >>  trades/tp'") },
+
+
+
+
+	TAGKEYS(                        XK_1,                               0)
+	TAGKEYS(                        XK_2,                               1)
+	TAGKEYS(                        XK_3,                               2)
+	TAGKEYS(                        XK_4,                               3)
+	TAGKEYS(                        XK_5,                               4)
+	TAGKEYS(                        XK_6,                               5)
+	TAGKEYS(                        XK_7,                               6)
+	TAGKEYS(                        XK_8,                               7)
+	TAGKEYS(                        XK_9,                               8)
+
+	{ MODKEY|ShiftMask,             XK_q,           quit,               {0} },
 };
 
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
-static Button buttons[] = {
+static const Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
