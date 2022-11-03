@@ -116,6 +116,7 @@ static const Key keys[] = {
     { Mod4Mask,                     XK_z,           spawn,              SHCMD("xset dpms force off") },
     { Mod4Mask|ControlMask,         XK_b,           spawn,              SHCMD("dunstify $(curl -s cli.fyi/BTC | awk 'NR==4 {print\"btc: \"$3+0}')") },
     { Mod4Mask|ControlMask,         XK_x,           spawn,              SHCMD("dunstify $(curl -s cli.fyi/XMR | awk 'NR==4 {print\"xmr: \"$3+0}')") },
+    { Mod4Mask|ControlMask,         XK_t,           spawn,              SHCMD("dunstify $(date +%R)") },
     { Mod4Mask|ControlMask,         XK_u,           spawn,              SHCMD("dunstify $(date +%s)") },
     { Mod4Mask,                     XK_e,           spawn,              SHCMD("st -e zsh $HOME/Scripts/dmenu-emoji") },
     { MODKEY,                       XK_p,           spawn,              SHCMD("pmenu") },
