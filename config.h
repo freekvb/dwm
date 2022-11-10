@@ -45,7 +45,7 @@ static const Rule rules[] = {
 static const float mfact     = 0.59; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
-static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
+static const int lockfullscreen = 0; /* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -107,6 +107,7 @@ static const Key keys[] = {
     { Mod4Mask,                     XK_c,           spawn,              SHCMD("chromium") },
     { Mod4Mask,                     XK_f,           spawn,              SHCMD("firefox") },
     { Mod4Mask,                     XK_m,           spawn,              SHCMD("mt4") },
+    { Mod4Mask,                     XK_t,           spawn,              SHCMD("telegram-desktop") },
     { Mod4Mask,                     XK_p,           spawn,              SHCMD("clipmenu -i") },
     { Mod4Mask,                     XK_comma,       spawn,              SHCMD("pamixer --allow-boost -d 5") },
     { Mod4Mask,                     XK_period,      spawn,              SHCMD("pamixer --allow-boost -i 5") },
@@ -118,9 +119,11 @@ static const Key keys[] = {
     { Mod4Mask|ControlMask,         XK_x,           spawn,              SHCMD("dunstify $(curl -s cli.fyi/XMR | awk 'NR==4 {print\"xmr: \"$3+0}')") },
     { Mod4Mask|ControlMask,         XK_t,           spawn,              SHCMD("dunstify $(date +%R)") },
     { Mod4Mask|ControlMask,         XK_u,           spawn,              SHCMD("dunstify $(date +%s)") },
-    { Mod4Mask,                     XK_e,           spawn,              SHCMD("st -e zsh $HOME/Scripts/dmenu-emoji") },
+    { Mod4Mask|ControlMask,         XK_s,           spawn,              SHCMD("st -e zsh $HOME/Scripts/snippet") },
+    { Mod4Mask,                     XK_e,           spawn,              SHCMD("dmenu-emoji") },
+    { Mod4Mask,                     XK_s,           spawn,              SHCMD("smenu") },
     { MODKEY,                       XK_p,           spawn,              SHCMD("pmenu") },
-    { MODKEY,                       XK_v,           spawn,              SHCMD("st -e zsh $HOME/Scripts/yt_mpv") },
+    { MODKEY,                       XK_v,           spawn,              SHCMD("yt_mpv") },
     { MODKEY,                       XK_f,           spawn,              SHCMD("scrot '%d-%b-%Y-%H:%M:%S.png' -e 'mv $f ~/Notes/ict/forums/' && dunstify 'chart screenshot  >>  forums'") },
     { MODKEY,                       XK_s,           spawn,              SHCMD("scrot '%d-%b-%Y-%H:%M:%S.png' -e 'mv $f ~/Notes/ict/reviews/' && dunstify 'chart screenshot  >>  reviews'") },
     { MODKEY,                       XK_y,           spawn,              SHCMD("scrot '%d-%b-%Y-%H:%M:%S.png' -e 'mv $f ~/Notes/ict/yt_reviews/' && dunstify 'chart screenshot  >>  yt_reviews'") },
