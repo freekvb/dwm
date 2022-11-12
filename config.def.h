@@ -109,6 +109,7 @@ static const Key keys[] = {
     { Mod4Mask,                     XK_m,           spawn,              SHCMD("mt4") },
     { Mod4Mask,                     XK_t,           spawn,              SHCMD("telegram-desktop") },
     { Mod4Mask,                     XK_p,           spawn,              SHCMD("clipmenu -i") },
+    { Mod4Mask,                     XK_r,           spawn,              SHCMD("rofi -show combi -combi-modes 'run,keys' -modes combi") },
     { Mod4Mask,                     XK_comma,       spawn,              SHCMD("pamixer --allow-boost -d 5") },
     { Mod4Mask,                     XK_period,      spawn,              SHCMD("pamixer --allow-boost -i 5") },
     { Mod4Mask,                     XK_slash,       spawn,              SHCMD("pamixer -t") },
@@ -125,10 +126,10 @@ static const Key keys[] = {
     { MODKEY,                       XK_p,           spawn,              SHCMD("pmenu") },
     { MODKEY,                       XK_v,           spawn,              SHCMD("yt_mpv") },
     { MODKEY,                       XK_f,           spawn,              SHCMD("scrot '%d-%b-%Y-%H:%M:%S.png' -e 'mv $f ~/Notes/ict/forums/' && dunstify 'chart screenshot  >>  forums'") },
-    { MODKEY,                       XK_s,           spawn,              SHCMD("scrot '%d-%b-%Y-%H:%M:%S.png' -e 'mv $f ~/Notes/ict/reviews/' && dunstify 'chart screenshot  >>  reviews'") },
-    { MODKEY,                       XK_y,           spawn,              SHCMD("scrot '%d-%b-%Y-%H:%M:%S.png' -e 'mv $f ~/Notes/ict/yt_reviews/' && dunstify 'chart screenshot  >>  yt_reviews'") },
     { MODKEY,                       XK_x,           spawn,              SHCMD("scrot '%d-%b-%Y-%H:%M:%S.png' -e 'mv $f ~/Notes/trades/tp/' && dunstify 'chart screenshot  >>  trades/tp'") },
-
+/*    { MODKEY,                       XK_s,           spawn,              SHCMD("scrot '%d-%b-%Y-%H:%M:%S.png' -e 'mv $f ~/Notes/ict/reviews/' && dunstify 'chart screenshot  >>  reviews'") },
+ *    { MODKEY,                       XK_y,           spawn,              SHCMD("scrot '%d-%b-%Y-%H:%M:%S.png' -e 'mv $f ~/Notes/ict/yt_reviews/' && dunstify 'chart screenshot  >>  yt_reviews'") },
+ */
 
 
 
