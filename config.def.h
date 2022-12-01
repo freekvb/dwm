@@ -105,7 +105,7 @@ static const Key keys[] = {
 
     { Mod4Mask,                     XK_q,           spawn,              SHCMD("qutebrowser") },
     { Mod4Mask,                     XK_c,           spawn,              SHCMD("chromium") },
-    { Mod4Mask,                     XK_f,           spawn,              SHCMD("firefox") },
+    { Mod4Mask,                     XK_f,           spawn,              SHCMD("firefox -browser & xdotool search --sync --onlyvisible --class 'Firefox' windowactivate key F11") },
     { Mod4Mask,                     XK_m,           spawn,              SHCMD("mt4") },
     { Mod4Mask,                     XK_t,           spawn,              SHCMD("telegram-desktop") },
     { Mod4Mask,                     XK_p,           spawn,              SHCMD("clipmenu -i") },
