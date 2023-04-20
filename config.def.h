@@ -4,10 +4,10 @@
 static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating    = 1;        /* 1 means swallow floating windows by default */
-static const int showbar            = 0;        /* 0 means no bar */
+static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "Terminus:pixelsize=14:antialias=true:autohint=true" };
-static const char dmenufont[]       = "Terminus:pixelsize=14";
+static const char dmenufont[]       =   "Terminus:pixelsize=14";
 
 #define wal "/home/fvb/.cache/wal/colors-wal-dwm.h"
 
@@ -24,7 +24,7 @@ static const char *colors[][3]      = {
 
     /*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray5 },
-	[SchemeSel]  = { col_gray4, col_gray2,  col_cyan  },
+	[SchemeSel]  = { col_gray4, col_gray2, col_cyan  },
 };
 #endif
 
@@ -38,19 +38,19 @@ static const Rule rules[] = {
 	 */
 	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
 	{ "St",      NULL,     NULL,           0,         0,          1,           0,        -1 },
-	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
+	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 },  /* xev */
 };
 
 /* layout(s) */
-static const float mfact     = 0.59; /* factor of master area size [0.05..0.95] */
-static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
-static const int lockfullscreen = 0; /* 1 will force focus on the fullscreen window */
+static const float mfact        = 0.58; /* factor of master area size [0.05..0.95] */
+static const int nmaster        = 1;    /* number of clients in master area */
+static const int resizehints    = 0;    /* 1 means respect size hints in tiled resizals */
+static const int lockfullscreen = 0;    /* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {
-	/* symbol     arrange function */
-	{ " []= ",      tile },    /* first entry is default */
-	{ " ><> ",      NULL },    /* no layout function means floating behavior */
+	/* symbol       arrange function */
+	{ " []= ",      tile },         /* first entry is default */
+	{ " ><> ",      NULL },         /* no layout function means floating behavior */
 	{ " [M] ",      monocle },
 };
 
@@ -66,11 +66,11 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", NULL };
-static const char *termcmd[]  = { "st", NULL };
-static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
+static char dmenumon[2]             = "0"; /* component of dmenucmd, manipulated in spawn() */
+static const char *dmenucmd[]       = { "dmenu_run", NULL };
+static const char *termcmd[]        = { "st", NULL };
+static const char scratchpadname[]  = "scratchpad";
+static const char *scratchpadcmd[]  = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
 
 static const Key keys[] = {
 
@@ -95,7 +95,7 @@ static const Key keys[] = {
 	{ MODKEY|ControlMask,           XK_f,           setlayout,          {.v = &layouts[1]} },
 	{ MODKEY|ControlMask,           XK_m,           setlayout,          {.v = &layouts[2]} },
 	{ MODKEY|ControlMask,           XK_space,       setlayout,          {0} },
-	{ MODKEY|ShiftMask,             XK_space,       togglefloating,     {0} },
+	{ MODKEY|ControlMask|ShiftMask, XK_space,       togglefloating,     {0} },
 	{ MODKEY,                       XK_0,           view,               {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,           tag,                {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_comma,       focusmon,           {.i = -1 } },
@@ -106,7 +106,8 @@ static const Key keys[] = {
     { Mod4Mask,                     XK_q,           spawn,              SHCMD("qutebrowser") },
     { Mod4Mask,                     XK_c,           spawn,              SHCMD("chromium") },
     { Mod4Mask,                     XK_f,           spawn,              SHCMD("firefox") },
-    { Mod4Mask,                     XK_m,           spawn,              SHCMD("mt4") },
+    { Mod4Mask|ShiftMask,           XK_m,           spawn,              SHCMD("mt4") },
+    { Mod4Mask,                     XK_m,           spawn,              SHCMD("mt5") },
     { Mod4Mask,                     XK_t,           spawn,              SHCMD("telegram-desktop") },
     { MODKEY,                       XK_p,           spawn,              SHCMD("clipmenu -i") },
     { Mod4Mask,                     XK_r,           spawn,              SHCMD("rofi -show combi -combi-modes 'run,keys' -modes combi") },
@@ -114,24 +115,19 @@ static const Key keys[] = {
     { Mod4Mask,                     XK_period,      spawn,              SHCMD("pamixer --allow-boost -i 5 && notify-send --hint=string:x-dunst-stack-tag:volume: $(vol)") },
     { Mod4Mask,                     XK_slash,       spawn,              SHCMD("pamixer -t") },
     { MODKEY,                       XK_x,           spawn,              SHCMD("mocp -M $XDG_CONFIG_HOME/moc -G") },
-    { Mod4Mask,                     XK_y,           spawn,              SHCMD("pipecat-turbo.sh") },
+    { MODKEY,                       XK_y,           spawn,              SHCMD("pipecat-turbo.sh") },
     { MODKEY,                       XK_z,           spawn,              SHCMD("xset dpms force off") },
     { Mod4Mask|ControlMask,         XK_b,           spawn,              SHCMD("dunstify $(curl -s cli.fyi/BTC | awk 'NR==4 {print\"btc: \"$3+0}')") },
     { Mod4Mask|ControlMask,         XK_x,           spawn,              SHCMD("dunstify $(curl -s cli.fyi/XMR | awk 'NR==4 {print\"xmr: \"$3+0}')") },
     { Mod4Mask|ControlMask,         XK_t,           spawn,              SHCMD("dunstify $(date +%R)") },
     { Mod4Mask|ControlMask,         XK_u,           spawn,              SHCMD("dunstify $(date +%s)") },
-    { Mod4Mask|ControlMask,         XK_s,           spawn,              SHCMD("st -e zsh $HOME/Scripts/snippet") },
     { Mod4Mask,                     XK_e,           spawn,              SHCMD("dmenu-emoji") },
-    { Mod4Mask,                     XK_s,           spawn,              SHCMD("smenu") },
+    { MODKEY|ControlMask,           XK_s,           spawn,              SHCMD("st -e zsh $HOME/Scripts/snippet") },
+    { MODKEY,                       XK_s,           spawn,              SHCMD("smenu") },
     { Mod4Mask,                     XK_p,           spawn,              SHCMD("pmenu") },
     { MODKEY,                       XK_v,           spawn,              SHCMD("yt_mpv") },
+    { Mod4Mask,                     XK_s,           spawn,              SHCMD("scrot '%d-%b-%Y-%H:%M:%S.png' -e 'mv $f ~/Notes/trades/reviews/' && dunstify 'chart screenshot  >>  trades/reviews'") },
     { Mod4Mask,                     XK_x,           spawn,              SHCMD("scrot '%d-%b-%Y-%H:%M:%S.png' -e 'mv $f ~/Notes/trades/tp/' && dunstify 'chart screenshot  >>  trades/tp'") },
-/*    { MODKEY,                       XK_f,           spawn,              SHCMD("scrot '%d-%b-%Y-%H:%M:%S.png' -e 'mv $f ~/Notes/ict/forums/' && dunstify 'chart screenshot  >>  forums'") },
- *    { MODKEY,                       XK_s,           spawn,              SHCMD("scrot '%d-%b-%Y-%H:%M:%S.png' -e 'mv $f ~/Notes/ict/reviews/' && dunstify 'chart screenshot  >>  reviews'") },
- *    { MODKEY,                       XK_y,           spawn,              SHCMD("scrot '%d-%b-%Y-%H:%M:%S.png' -e 'mv $f ~/Notes/ict/yt_reviews/' && dunstify 'chart screenshot  >>  yt_reviews'") },
- */
-
-
 
 	TAGKEYS(                        XK_1,                               0)
 	TAGKEYS(                        XK_2,                               1)
@@ -146,10 +142,12 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_q,           quit,               {0} },
 };
 
-/* button definitions */
+/* mouse button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
+
 static const Button buttons[] = {
-	/* click                event mask      button          function        argument */
+
+ /* click                   event mask      button          function        argument */
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
