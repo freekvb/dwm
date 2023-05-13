@@ -76,16 +76,16 @@ static const Key keys[] = {
 
  /* modifier                        key             function            argument */
 
-	{ MODKEY|ShiftMask,             XK_space,       spawn,              {.v = dmenucmd } },
 	{ MODKEY,                       XK_space,       spawn,              {.v = termcmd } },
+	{ Mod4Mask,                     XK_Return,      spawn,              {.v = dmenucmd } },
 	{ MODKEY,                       XK_d,           togglescratch,      {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_b,           togglebar,          {0} },
 	{ MODKEY,                       XK_j,           focusstack,         {.i = +1 } },
 	{ MODKEY,                       XK_k,           focusstack,         {.i = -1 } },
 	{ MODKEY,                       XK_i,           incnmaster,         {.i = +1 } },
 	{ MODKEY,                       XK_o,           incnmaster,         {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_h,           setmfact,           {.f = -0.05} },
-	{ MODKEY|ShiftMask,             XK_l,           setmfact,           {.f = +0.05} },
+	{ Mod4Mask,                     XK_h,           setmfact,           {.f = -0.05} },
+	{ Mod4Mask,                     XK_l,           setmfact,           {.f = +0.05} },
 	{ MODKEY|ShiftMask,             XK_Return,      zoom,               {0} },
 	{ MODKEY,                       XK_Tab,         view,               {0} },
 	{ MODKEY,                       XK_l,           shiftviewclients,   { .i = +1 } },
@@ -106,24 +106,16 @@ static const Key keys[] = {
     { Mod4Mask,                     XK_q,           spawn,              SHCMD("qutebrowser") },
     { Mod4Mask,                     XK_c,           spawn,              SHCMD("chromium") },
     { Mod4Mask,                     XK_f,           spawn,              SHCMD("firefox") },
-    { Mod4Mask|ShiftMask,           XK_m,           spawn,              SHCMD("mt4") },
     { Mod4Mask,                     XK_m,           spawn,              SHCMD("mt5") },
     { Mod4Mask,                     XK_t,           spawn,              SHCMD("telegram-desktop") },
     { MODKEY,                       XK_p,           spawn,              SHCMD("clipmenu -i") },
-    { Mod4Mask,                     XK_r,           spawn,              SHCMD("rofi -show combi -combi-modes 'run,keys' -modes combi") },
     { Mod4Mask,                     XK_comma,       spawn,              SHCMD("pamixer --allow-boost -d 5 && notify-send --hint=string:x-dunst-stack-tag:volume: $(vol)") },
     { Mod4Mask,                     XK_period,      spawn,              SHCMD("pamixer --allow-boost -i 5 && notify-send --hint=string:x-dunst-stack-tag:volume: $(vol)") },
     { Mod4Mask,                     XK_slash,       spawn,              SHCMD("pamixer -t") },
     { MODKEY,                       XK_x,           spawn,              SHCMD("mocp -M $XDG_CONFIG_HOME/moc -G") },
     { MODKEY,                       XK_y,           spawn,              SHCMD("pipecat-turbo.sh") },
     { MODKEY,                       XK_z,           spawn,              SHCMD("xset dpms force off") },
-    { Mod4Mask|ControlMask,         XK_b,           spawn,              SHCMD("dunstify $(curl -s cli.fyi/BTC | awk 'NR==4 {print\"btc: \"$3+0}')") },
-    { Mod4Mask|ControlMask,         XK_x,           spawn,              SHCMD("dunstify $(curl -s cli.fyi/XMR | awk 'NR==4 {print\"xmr: \"$3+0}')") },
-    { Mod4Mask|ControlMask,         XK_t,           spawn,              SHCMD("dunstify $(date +%R)") },
-    { Mod4Mask|ControlMask,         XK_u,           spawn,              SHCMD("dunstify $(date +%s)") },
     { Mod4Mask,                     XK_e,           spawn,              SHCMD("dmenu-emoji") },
-    { MODKEY|ControlMask,           XK_s,           spawn,              SHCMD("st -e zsh $HOME/Scripts/snippet") },
-    { MODKEY,                       XK_s,           spawn,              SHCMD("smenu") },
     { Mod4Mask,                     XK_p,           spawn,              SHCMD("pmenu") },
     { MODKEY,                       XK_v,           spawn,              SHCMD("yt_mpv") },
     { Mod4Mask,                     XK_s,           spawn,              SHCMD("scrot '%d-%b-%Y-%H:%M:%S.png' -e 'mv $f ~/Notes/trades/reviews/' && dunstify 'chart screenshot  >>  trades/reviews'") },
@@ -139,7 +131,7 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                               7)
 	TAGKEYS(                        XK_9,                               8)
 
-	{ MODKEY|ShiftMask,             XK_q,           quit,               {0} },
+	{ Mod4Mask|ShiftMask,           XK_q,           quit,               {0} },
 };
 
 /* mouse button definitions */
