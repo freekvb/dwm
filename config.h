@@ -7,7 +7,7 @@ static const int swallowfloating    = 1;        /* 1 means swallow floating wind
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "Hack:pixelsize=14:antialias=true:autohint=true" };
-static const char dmenufont[]       =   "Hack:pixelsize=12";
+static const char dmenufont[]       =   "Hack:pixelsize=14";
 
 #define wal "/home/fvb/.cache/wal/colors-wal-dwm.h"
 
@@ -72,6 +72,8 @@ static const char *termcmd[]        = { "st", NULL };
 static const char scratchpadname[]  = "scratchpad";
 static const char *scratchpadcmd[]  = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
 
+#include "movestack.c"
+
 static const Key keys[] = {
 
  /* modifier                        key             function            argument */
@@ -86,6 +88,8 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_o,           incnmaster,         {.i = -1 } },
 	{ Mod4Mask,                     XK_h,           setmfact,           {.f = -0.05} },
 	{ Mod4Mask,                     XK_l,           setmfact,           {.f = +0.05} },
+	{ MODKEY|ShiftMask,             XK_j,           movestack,          {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_k,           movestack,          {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_Return,      zoom,               {0} },
 	{ MODKEY,                       XK_Tab,         view,               {0} },
 	{ MODKEY,                       XK_l,           shiftviewclients,   { .i = +1 } },
@@ -115,6 +119,7 @@ static const Key keys[] = {
     { MODKEY,                       XK_x,           spawn,              SHCMD("mocp -M $XDG_CONFIG_HOME/moc -G") },
     { MODKEY,                       XK_y,           spawn,              SHCMD("pipecat-turbo.sh") },
     { MODKEY,                       XK_z,           spawn,              SHCMD("xset dpms force off") },
+    { Mod4Mask,                     XK_b,           spawn,              SHCMD("tbar") },
     { Mod4Mask,                     XK_e,           spawn,              SHCMD("dmenu-emoji") },
     { Mod4Mask,                     XK_p,           spawn,              SHCMD("pmenu") },
     { MODKEY,                       XK_v,           spawn,              SHCMD("yt_mpv") },
