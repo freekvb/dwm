@@ -117,7 +117,6 @@ static const Key keys[] = {
     { Mod4Mask,                     XK_period,      spawn,              SHCMD("pamixer --allow-boost -i 5 && notify-send --hint=string:x-dunst-stack-tag:volume: $(vol)") },
     { Mod4Mask,                     XK_slash,       spawn,              SHCMD("pamixer -t") },
     { MODKEY,                       XK_x,           spawn,              SHCMD("mocp -M $XDG_CONFIG_HOME/moc -G") },
-    { MODKEY,                       XK_y,           spawn,              SHCMD("pipecat-turbo.sh") },
     { MODKEY,                       XK_z,           spawn,              SHCMD("xset dpms force off") },
     { Mod4Mask,                     XK_b,           spawn,              SHCMD("tbar") },
     { Mod4Mask,                     XK_e,           spawn,              SHCMD("dmenu-emoji") },
