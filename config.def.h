@@ -109,7 +109,7 @@ static const Key keys[] = {
 
     { Mod4Mask,                     XK_q,           spawn,              SHCMD("qutebrowser") },
     { Mod4Mask,                     XK_c,           spawn,              SHCMD("chromium") },
-    { Mod4Mask,                     XK_f,           spawn,              SHCMD("firefox") },
+    { Mod4Mask,                     XK_f,           spawn,              SHCMD("firefox_fs") },
     { Mod4Mask,                     XK_m,           spawn,              SHCMD("mt5") },
     { Mod4Mask,                     XK_t,           spawn,              SHCMD("telegram-desktop") },
     { MODKEY,                       XK_p,           spawn,              SHCMD("clipmenu -i") },
@@ -118,7 +118,7 @@ static const Key keys[] = {
     { Mod4Mask,                     XK_slash,       spawn,              SHCMD("pamixer -t") },
     { MODKEY,                       XK_x,           spawn,              SHCMD("mocp -M $XDG_CONFIG_HOME/moc -G") },
     { MODKEY,                       XK_z,           spawn,              SHCMD("xset dpms force off") },
-    { Mod4Mask,                     XK_b,           spawn,              SHCMD("tbar") },
+    { Mod4Mask,                     XK_b,           spawn,              SHCMD("bbar") },
     { Mod4Mask,                     XK_e,           spawn,              SHCMD("dmenu-emoji") },
     { Mod4Mask,                     XK_p,           spawn,              SHCMD("pmenu") },
     { MODKEY,                       XK_v,           spawn,              SHCMD("yt_mpv") },
