@@ -7,7 +7,7 @@ static const int swallowfloating    = 1;        /* 1 means swallow floating wind
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "Hack:pixelsize=14:antialias=true:autohint=true" };
-static const char dmenufont[]       =   "Hack:pixelsize=14";
+static const char dmenufont[]       = "Hack:pixelsize=14";
 
 #define wal "/home/fvb/.cache/wal/colors-wal-dwm.h"
 
@@ -38,7 +38,7 @@ static const Rule rules[] = {
 	 */
 	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
 	{ "St",      NULL,     NULL,           0,         0,          1,           0,        -1 },
-	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 },  /* xev */
+	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
 
 /* layout(s) */
@@ -48,10 +48,10 @@ static const int resizehints    = 0;    /* 1 means respect size hints in tiled r
 static const int lockfullscreen = 0;    /* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {
-	/* symbol       arrange function */
-	{ " []= ",      tile },         /* first entry is default */
-	{ " ><> ",      NULL },         /* no layout function means floating behavior */
-	{ " [M] ",      monocle },
+	/* symbol     arrange function */
+	{ "[]=",      tile },           /* first entry is default */
+	{ "><>",      NULL },           /* no layout function means floating behavior */
+	{ "[M]",      monocle },
 };
 
 /* key definitions */
@@ -66,9 +66,9 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static char dmenumon[2]             = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[]       = { "dmenu_run", NULL };
-static const char *termcmd[]        = { "st", NULL };
+static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
+static const char *dmenucmd[] = { "dmenu_run", NULL };
+static const char *termcmd[]  = { "st", NULL };
 static const char scratchpadname[]  = "scratchpad";
 static const char *scratchpadcmd[]  = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
 
