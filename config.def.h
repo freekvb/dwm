@@ -36,9 +36,10 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
-	{ "St",      NULL,     NULL,           0,         0,          1,           0,        -1 },
-	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
+	/* class    instance    title               tags mask   isfloating  isterminal  noswallow   monitor */
+	{ "St",     NULL,       NULL,               0,          0,          1,          0,          -1 },
+    { NULL,     NULL,       "scratchpad",       0,          1,          1,          0,          -1,},
+	{ NULL,     NULL,       "Event Tester",     0,          0,          0,          1,          -1 },  /* xev */
 };
 
 /* layout(s) */
@@ -119,7 +120,8 @@ static const Key keys[] = {
     { MODKEY,                       XK_z,           spawn,              SHCMD("xset dpms force off") },
     { Mod4Mask,                     XK_b,           spawn,              SHCMD("bookmarks") },
     { Mod4Mask,                     XK_e,           spawn,              SHCMD("dmenu-emoji") },
-    { Mod4Mask,                     XK_p,           spawn,              SHCMD("pmenu") },
+    { Mod4Mask,                     XK_p,           spawn,              SHCMD("passmenu") },
+    { MODKEY,                       XK_c,           spawn,              SHCMD("rofi -show calc -modi calc -no-show-match -no-sort &") },
     { MODKEY,                       XK_v,           spawn,              SHCMD("yt_mpv") },
     { Mod4Mask,                     XK_s,           spawn,              SHCMD("scrot '%d-%b-%Y-%H:%M:%S.png' -e 'mv $f ~/Notes/trades/reviews/' && dunstify 'chart screenshot  >>  trades/reviews'") },
     { Mod4Mask,                     XK_x,           spawn,              SHCMD("scrot '%d-%b-%Y-%H:%M:%S.png' -e 'mv $f ~/Notes/trades/tp/' && dunstify 'chart screenshot  >>  trades/tp'") },
