@@ -122,7 +122,7 @@ static const Key keys[] = {
     { Mod4Mask,                     XK_p,           spawn,              SHCMD("passmenu") },
     { MODKEY,                       XK_c,           spawn,              SHCMD("rofi -show calc -modi calc -no-show-match -no-sort &") },
     { MODKEY,                       XK_v,           spawn,              SHCMD("yt_mpv") },
-    { Mod4Mask,                     XK_x,           spawn,              SHCMD("scrot '%d-%b-%Y-%H:%M:%S.png' -e 'mv $f ~/Notes/trades/ta/' && dunstify 'chart screenshot  >>  trades/ta'") },
+    { MODKEY,                       XK_y,           spawn,              SHCMD("ytfzf -Dlm") },
 
 	TAGKEYS(                        XK_1,                               0)
 	TAGKEYS(                        XK_2,                               1)
