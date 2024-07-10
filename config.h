@@ -117,10 +117,9 @@ static const Key keys[] = {
     { Mod4Mask,                     XK_slash,       spawn,              SHCMD("pamixer -t") },
     { MODKEY,                       XK_x,           spawn,              SHCMD("mocp -M $XDG_CONFIG_HOME/moc -G") },
     { MODKEY,                       XK_z,           spawn,              SHCMD("xset dpms force off") },
-    { Mod4Mask,                     XK_b,           spawn,              SHCMD("bookmarks") },
     { Mod4Mask,                     XK_e,           spawn,              SHCMD("dmenu-emoji") },
     { Mod4Mask,                     XK_p,           spawn,              SHCMD("passmenu") },
-    { MODKEY,                       XK_c,           spawn,              SHCMD("rofi -show calc -modi calc -no-show-match -no-sort &") },
+    { Mod4Mask,                     XK_r,           spawn,              SHCMD("rofi -show calc -modi calc -no-show-match -no-sort &") },
     { MODKEY,                       XK_v,           spawn,              SHCMD("yt_mpv") },
     { MODKEY,                       XK_y,           spawn,              SHCMD("ytfzf -Dlm") },
 
