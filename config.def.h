@@ -114,14 +114,16 @@ static const Key keys[] = {
     { MODKEY,                       XK_p,           spawn,              SHCMD("clipmenu -i") },
     { Mod4Mask,                     XK_comma,       spawn,              SHCMD("pamixer --allow-boost -d 5 && notify-send --hint=string:x-dunst-stack-tag:volume: $(vol)") },
     { Mod4Mask,                     XK_period,      spawn,              SHCMD("pamixer --allow-boost -i 5 && notify-send --hint=string:x-dunst-stack-tag:volume: $(vol)") },
-    { Mod4Mask,                     XK_slash,       spawn,              SHCMD("pamixer -t") },
+    { Mod4Mask,                     XK_slash,       spawn,              SHCMD("pamixer --allow-boost --set-volume 30") },
+    { Mod4Mask,                     XK_m,           spawn,              SHCMD("pamixer -t") },
     { MODKEY,                       XK_x,           spawn,              SHCMD("mocp -M $XDG_CONFIG_HOME/moc -G") },
-    { MODKEY,                       XK_z,           spawn,              SHCMD("xset dpms force off") },
+    { MODKEY,                       XK_z,           spawn,              SHCMD("pamixer --allow-boost --set-volume 30 && xset dpms force off") },
     { Mod4Mask,                     XK_e,           spawn,              SHCMD("dmenu-emoji") },
     { Mod4Mask,                     XK_p,           spawn,              SHCMD("passmenu") },
     { Mod4Mask,                     XK_r,           spawn,              SHCMD("rofi -show calc -modi calc -no-show-match -no-sort &") },
     { MODKEY,                       XK_v,           spawn,              SHCMD("yt_mpv") },
     { MODKEY,                       XK_y,           spawn,              SHCMD("ytfzf -Dlm") },
+    { Mod4Mask,                     XK_x,           spawn,              SHCMD("scrot '%Y/%m/%d-%H:%M.png' -e 'mv $f ~/Notes/screens/' && dunstify 'screenshot  >>  screens'") },
 
 	TAGKEYS(                        XK_1,                               0)
 	TAGKEYS(                        XK_2,                               1)
