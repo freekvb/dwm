@@ -109,7 +109,7 @@ static const Key keys[] = {
 	{ MODKEY|ControlMask,           XK_period,      tagmon,             {.i = +1 } },
 
     { Mod4Mask,                     XK_q,           spawn,              SHCMD("qutebrowser") },
-    { Mod4Mask,                     XK_c,           spawn,              SHCMD("chromium --start-fullscreen") },
+    { Mod4Mask,                     XK_c,           spawn,              SHCMD("chromium --kiosk") },
     { Mod4Mask,                     XK_f,           spawn,              SHCMD("firefox_fs") },
     { MODKEY,                       XK_p,           spawn,              SHCMD("clipmenu -i") },
     { Mod4Mask,                     XK_comma,       spawn,              SHCMD("pamixer --allow-boost -d 5 && notify-send --hint=string:x-dunst-stack-tag:volume: $(vol)") },
@@ -123,7 +123,8 @@ static const Key keys[] = {
     { Mod4Mask,                     XK_r,           spawn,              SHCMD("rofi -show calc -modi calc -no-show-match -no-sort &") },
     { MODKEY,                       XK_v,           spawn,              SHCMD("yt_mpv") },
     { MODKEY,                       XK_y,           spawn,              SHCMD("ytfzf -Dlm") },
-    { Mod4Mask,                     XK_x,           spawn,              SHCMD("scrot '%Y/%m/%d-%H:%M.png' -e 'mv $f ~/Notes/screens/' && dunstify 'screenshot  >>  screens'") },
+    { MODKEY|ShiftMask,             XK_y,           spawn,              SHCMD("playerctl play-pause") },
+    { Mod4Mask,                     XK_x,           spawn,              SHCMD("scrot -F 'MNQZ2024_%Y-%m-%d_%H-%M-%S.png' -e 'mv $f ~/Notes/trades/tp/' && dunstify 'screenshot  >>  tp'") },
 
 	TAGKEYS(                        XK_1,                               0)
 	TAGKEYS(                        XK_2,                               1)
